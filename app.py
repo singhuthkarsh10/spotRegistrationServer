@@ -5,6 +5,7 @@ import bcrypt
 from flask_mail import Mail, Message
 import qrcode
 from io import BytesIO
+import awsgi
 
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "*"}})
@@ -122,5 +123,8 @@ def send_registration_email(name, email, qr_img, event):
     msg.attach("ticket.png", "image/png", img_bytes)
     mail.send(msg)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+def lambdaHandler(event, context):
+    return awsgi.response(app,event,context,base64_content_types={"image/png"})
+
+
+    app.run(host="0.0.0.0",port=5000,debug=True,ssl_context="adhoc")
