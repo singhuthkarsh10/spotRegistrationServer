@@ -9,7 +9,7 @@ from io import BytesIO
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 
-client = MongoClient('mongodb://localhost:27017/')
+client = MongoClient('mongodb+srv://singhuthkarsh10:uthkarsh@2005@cluster0.2jvmuux.mongodb.net/')
 db = client['horizon']
 admins_collection = db['admins']
 registrations = db['registrations']
