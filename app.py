@@ -28,7 +28,7 @@ try:
     # Now you can proceed to use the `client` object to interact with MongoDB
 except Exception as e:
     print(f"Error connecting to MongoDB Atlas: {e}")
-    
+
 db = client['horizon']
 admins_collection = db['admins']
 registrations = db['registrations']
@@ -133,7 +133,7 @@ def generate_qr(data):
 
 def send_registration_email(name, email, qr_img, event):
     img_bytes = BytesIO()
-    qr_img.save(img_bytes, format='PNG')
+    qr_img.save(img_bytes)
     img_bytes = img_bytes.getvalue()
     msg = Message('Horizon \'24 Registration Confirmation', sender='sptrgstrtn@gmail.com', recipients=[email])
     msg.body = f'Hello {name},\n\nWelcome to Horizon 2024. Thank you for registering for the event {event}. We have attached a ticket with this email, you can show that ticket at the venue and proceed for the event.\n\nThanks and regards,\nACM SIST Student Chapter'
