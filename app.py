@@ -5,11 +5,17 @@ import bcrypt
 from flask_mail import Mail, Message
 import qrcode
 from io import BytesIO
+from urllib.parse import quote_plus
 
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 
-client = MongoClient('mongodb+srv://singhuthkarsh10:uthkarsh@2005@cluster0.2jvmuux.mongodb.net/')
+username = 'singhuthkarsh10'
+password = 'uthkarsh@2005'
+encoded_username = quote_plus(username)
+encoded_password = quote_plus(password)
+
+client = MongoClient(f'mongodb+srv://{encoded_username}:{encoded_password}@cluster0.2jvmuux.mongodb.net/')
 db = client['horizon']
 admins_collection = db['admins']
 registrations = db['registrations']
