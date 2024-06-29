@@ -123,4 +123,4 @@ def send_registration_email(name, email, qr_img, event):
     mail.send(msg)
 
 
-app.run(host="0.0.0.0",port=5001,debug=True,ssl_context="adhoc")
+app.run(host="0.0.0.0",port=5001,debug=False)
