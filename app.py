@@ -15,7 +15,20 @@ password = 'uthkarsh@2005'
 encoded_username = quote_plus(username)
 encoded_password = quote_plus(password)
 
-client = MongoClient(f'mongodb+srv://{encoded_username}:{encoded_password}@cluster0.2jvmuux.mongodb.net/')
+client = f'mongodb+srv://{encoded_username}:{encoded_password}@cluster0.2jvmuux.mongodb.net/'
+try:
+    # Attempt connection
+    client = MongoClient(client)
+    
+    # Test connection
+    client.server_info()  # This will raise an exception if the connection fails
+    
+    print("Connected successfully to MongoDB Atlas")
+    
+    # Now you can proceed to use the `client` object to interact with MongoDB
+except Exception as e:
+    print(f"Error connecting to MongoDB Atlas: {e}")
+    
 db = client['horizon']
 admins_collection = db['admins']
 registrations = db['registrations']
