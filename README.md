@@ -64,3 +64,8 @@ Update the following variables in the script:
     ```
 
 2. The application will run on `http://0.0.0.0:5001`.
+
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
